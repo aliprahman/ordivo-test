@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('products', ProductController::class)->only([
     'index', 'show', 'store', 'update', 'destroy'
+]);
+
+Route::middleware('auth:sanctum')->resource('carts', CartController::class)->only([
+    'index', 'store', 'destroy'
 ]);

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Utils\Traits\ResourceTrait;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ProductCollection extends ResourceCollection
+class CartCollection extends ResourceCollection
 {
     use ResourceTrait;
 

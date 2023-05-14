@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,4 +31,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/carts', [CartController::class, 'index']);
     Route::post('/carts', [CartController::class, 'store']);
     Route::delete('/carts', [CartController::class, 'destory']);
+
+    Route::post('/checkout', [OrderController::class, 'checkout']);
+
 });

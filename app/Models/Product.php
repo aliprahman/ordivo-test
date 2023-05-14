@@ -28,4 +28,12 @@ class Product extends Model
     {
         return $this->hasMany(Cart::class, 'product_id', 'id');
     }
+
+    /**
+     * Get the order detail for the product.
+     */
+    public function order_details(): HasMany
+    {
+        return $this->hasMany(OrderDetail::class, 'product_id', 'id');
+    }
 }

@@ -50,4 +50,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class, 'user_id', 'id');
     }
+
+    /**
+     * Get the order for the user.
+     */
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
 }

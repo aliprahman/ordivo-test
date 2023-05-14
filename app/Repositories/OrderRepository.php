@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Product;
 use App\Jobs\ProcessOrder;
 use Illuminate\Http\Request;
 use App\Interfaces\OrderInterface;
@@ -40,5 +42,21 @@ class OrderRepository implements OrderInterface {
             $query->whereDate('created_at', '<=', $maxDate);
         })
         ->paginate($request->per_page);
+    }
+
+    public function summary() {
+        $total_order = Order::count();
+        $total_order_value = Order::sum('total_price');
+        $total_product = Product::count();
+        $total_product_ordered = OrderDetail::distinct('product_id')->count();
+        $total_product_quantity_ordered = Order::sum('total_quantity');
+
+        return [
+            'total_order' => $total_order,
+            'total_order_value' => rupiah($total_order_value),
+            'total_product' => $total_product,
+            'total_product_ordered' => $total_product_ordered,
+            'total_product_quantity_ordered' => $total_product_quantity_ordered
+        ];
     }
 }

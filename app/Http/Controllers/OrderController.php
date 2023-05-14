@@ -33,4 +33,9 @@ class OrderController extends Controller
             'message' => count($orders) ?'get orders success' : 'empty orders'
         ]);
     }
+
+    public function summary()
+    {
+        return $this->responseSuccess('get summary success', $this->orderRepository->summary());
+    }
 }

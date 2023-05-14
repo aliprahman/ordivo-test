@@ -60,6 +60,6 @@ class Order extends Model
      */
     public function order_details(): HasMany
     {
-        return $this->hasMany(Product::class, 'product_id', 'id');
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
 }

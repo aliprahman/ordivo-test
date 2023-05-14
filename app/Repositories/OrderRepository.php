@@ -24,4 +24,21 @@ class OrderRepository implements OrderInterface {
         }
         return $process;
     }
+
+    public function listOrder(Request $request, $user_id) {
+        $search = $request->query('search', '');
+        $minDate = $request->query('min_date', '');
+        $maxDate = $request->query('max_date', '');
+        return Order::with('order_details')
+        ->where('user_id', $user_id)
+        ->when($search, function ($query, $search) {
+            $query->where('order_code', 'like', "%$search%");
+        })
+        ->when($minDate, function ($query, $minDate) {
+            $query->whereDate('created_at', '>=', $minDate);
+        })->when($maxDate, function ($query, $maxDate) {
+            $query->whereDate('created_at', '<=', $maxDate);
+        })
+        ->paginate($request->per_page);
+    }
 }

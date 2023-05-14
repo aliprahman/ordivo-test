@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Utils\Traits\ResponseTrait;
 use App\Http\Requests\CheckoutRequest;
+use App\Http\Resources\OrderCollection;
 use App\Repositories\OrderRepository;
 
 class OrderController extends Controller
@@ -24,5 +25,12 @@ class OrderController extends Controller
         } else {
             return $this->responseError('checkout failed');
         }
+    }
+
+    public function index(Request $request) {
+        $orders = $this->orderRepository->listOrder($request, $request->user()->id);
+        return (new OrderCollection($orders))->additional([
+            'message' => count($orders) ?'get orders success' : 'empty orders'
+        ]);
     }
 }

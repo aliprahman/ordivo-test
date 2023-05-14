@@ -33,5 +33,6 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::delete('/carts', [CartController::class, 'destory']);
 
     Route::post('/checkout', [OrderController::class, 'checkout']);
+    Route::get('/orders', [OrderController::class, 'index']);
 
 });

@@ -20,7 +20,7 @@ class OrderResource extends JsonResource
             'order_code' => $this->order_code,
             'total_price' => rupiah($this->total_price),
             'total_quantity' => $this->total_quantity,
-            'order_detail' => (new OrderDetailResource($this->order_details)),
+            'order_detail' => OrderDetailResource::collection($this->order_details),
             'created_at' => tanggal_dan_waktu($this->created_at),
             'updated_at' => tanggal_dan_waktu($this->updated_at),
         ];

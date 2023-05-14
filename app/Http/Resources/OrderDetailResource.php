@@ -16,7 +16,7 @@ class OrderDetailResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'price' => rupiah($this->total_price),
+            'price' => rupiah($this->price),
             'quantity' => $this->quantity,
             'product' => (new ProductResource($this->product)),
             'created_at' => tanggal_dan_waktu($this->created_at),

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Utils\ResponseTrait;
+use App\Utils\Traits\ResponseTrait;
 use App\Repositories\UserRepository;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;

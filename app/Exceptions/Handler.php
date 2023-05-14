@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Utils\Traits\ResponseTrait;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 

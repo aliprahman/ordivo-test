@@ -27,6 +27,8 @@ Route::resource('products', ProductController::class)->only([
     'index', 'show', 'store', 'update', 'destroy'
 ]);
 
-Route::middleware('auth:sanctum')->resource('carts', CartController::class)->only([
-    'index', 'store', 'destroy'
-]);
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('/carts', [CartController::class, 'index']);
+    Route::post('/carts', [CartController::class, 'store']);
+    Route::delete('/carts', [CartController::class, 'destory']);
+});

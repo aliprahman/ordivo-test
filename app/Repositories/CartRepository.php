@@ -27,7 +27,7 @@ class CartRepository implements CartInterface {
         );
     }
 
-    public function delete($ids) {
+    public function delete(array $ids) {
         return Cart::destroy($ids);
     }
 }

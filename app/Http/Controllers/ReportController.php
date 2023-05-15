@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Exports\OrderExport;
 use Illuminate\Support\Carbon;
 use App\Utils\Traits\ResponseTrait;
 use Illuminate\Support\Facades\Storage;
-
+use Excel;
 class ReportController extends Controller
 {
     use ResponseTrait;
@@ -26,7 +25,7 @@ class ReportController extends Controller
 
     public function export() {
         $filename = 'reports/report_' . Carbon::now()->format('dmYHis') . '.xlsx';
-        (new OrderExport)->store($filename, 'public');
+        Excel::store(new OrderExport(), $filename, 'public');
         return $this->responseSuccess('generate report success');
     }
 }

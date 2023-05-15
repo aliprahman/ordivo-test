@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReportController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,4 +38,6 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/orders', [OrderController::class, 'index']);
     Route::get('/summary', [OrderController::class, 'summary']);
 
+    Route::get('/reports', [ReportController::class, 'index']);
+    Route::post('/reports/generate', [ReportController::class, 'export']);
 });

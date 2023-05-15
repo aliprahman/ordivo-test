@@ -7,7 +7,6 @@ use App\Utils\Traits\ResponseTrait;
 use App\Http\Requests\CheckoutRequest;
 use App\Http\Resources\OrderCollection;
 use App\Repositories\OrderRepository;
-
 class OrderController extends Controller
 {
     use ResponseTrait;
@@ -34,8 +33,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function summary()
-    {
+    public function summary() {
         return $this->responseSuccess('get summary success', $this->orderRepository->summary());
     }
 }

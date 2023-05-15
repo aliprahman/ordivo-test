@@ -18,7 +18,7 @@ class Order extends Model
    protected static function booted(): void
    {
        static::created(function (Order $order) {
-           $code = Carbon::createFromFormat('Y-m-d H:i:s', $order->created_at)->format('Ymd');
+           $code = 'OR' . Carbon::createFromFormat('Y-m-d H:i:s', $order->created_at)->format('Ymd');
            $code .= str_pad($order->id, 5, "0", STR_PAD_LEFT);
 
            $order->order_code = $code;
